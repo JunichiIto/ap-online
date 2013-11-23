@@ -1,4 +1,9 @@
 %h1 Awesome Print Online
 
 = form_tag '/texts' do
-  = submit_tag
+  .text-before
+    %textarea= @text
+  .submit
+    = submit_tag
+  .text-after
+    %textarea= @converted_text
