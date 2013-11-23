@@ -6,4 +6,5 @@
   .submit
     = submit_tag
   .text-after
-    %textarea= @ap_text
+    -# TODO Maybe dangerous??
+    .well= eval(@text).ai(html: true) if @text.present?
