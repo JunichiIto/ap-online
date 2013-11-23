@@ -1,16 +1,38 @@
-%h1 Awesome Print Online
-
-= form_tag '/texts' do
-  .text-before
-    %textarea{ name: :text }= @text
-  .submit
-    = submit_tag 'Format'
-    = link_to 'Copy to clipboard', 'javascript:void(0);', id: 'copy-button'
-  .text-after
-    - if @text.present?
-      - begin
-        -# TODO Maybe dangerous??
-        = eval(@text).ai(html: true, color: { method: :green, string: :red, time: :cyanish, fixnum: :cyan, float: :cyan })
-        %textarea#text-to-copy.hidden= eval(@text).ai(plain: true)
-      - rescue ScriptError, StandardError => ex
-        %pre= ex
+#title
+  %h1 Awesome Print Online
+%hr/
+.container_12
+  .grid_12
+    = form_tag '/texts' do
+      %label{for: "text"}
+        Ruby code
+      %textarea#text{ name: :text }= @text
+      %br/
+      %input.button{name: "commit", type: "submit", value: "Format your code"}/
+      = link_to 'Copy to clipboard', 'javascript:void(0);', id: 'copy-button', class: 'button'
+      = link_to 'Reset', root_path, class: 'button'
+      %br/
+      %label
+        Your formated Ruby code
+      - if @text.present?
+        - begin
+          -# TODO Maybe dangerous??
+          = eval(@text).ai(html: true, color: { method: :green, string: :red, time: :cyanish, fixnum: :cyan, float: :cyan })
+          %textarea#text-to-copy.hidden= eval(@text).ai(plain: true)
+        - rescue ScriptError, StandardError => ex
+          %pre= ex
+      - else
+        %pre
+          (Nothing to view)
+  .clear
+  .grid_12
+    #box
+    %br/
+    %p
+      Source at
+      %a{href: "http://github.com/jpablobr/css2sass"} http://github.com/jpablobr/css2sass
+    %p
+      This simple site is created by Jose Pablo Barrantes @
+      %a{href: "http://jpablobr.com"} http://jpablobr.com
+      heavily inspired by
+      %a{href: "http://html2haml.heroku.com/"} html2haml
