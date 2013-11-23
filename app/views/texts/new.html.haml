@@ -2,8 +2,8 @@
 
 = form_tag '/texts' do
   .text-before
-    %textarea= @text
+    %textarea{ name: :text }= @text
   .submit
     = submit_tag
   .text-after
-    %textarea= @converted_text
+    %textarea= @ap_text
