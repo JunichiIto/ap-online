@@ -4,10 +4,13 @@
   .text-before
     %textarea{ name: :text }= @text
   .submit
-    = submit_tag
+    = submit_tag 'Format'
     = link_to 'Copy to clipboard', 'javascript:void(0);', id: 'copy-button'
   .text-after
     - if @text.present?
-      -# TODO Maybe dangerous??
-      = eval(@text).ai(html: true, color: { method: :green, string: :red, time: :cyanish, fixnum: :cyan, float: :cyan })
-      %textarea#text-to-copy.hidden= eval(@text).ai(plain: true)
+      - begin
+        -# TODO Maybe dangerous??
+        = eval(@text).ai(html: true, color: { method: :green, string: :red, time: :cyanish, fixnum: :cyan, float: :cyan })
+        %textarea#text-to-copy.hidden= eval(@text).ai(plain: true)
+      - rescue ScriptError, StandardError => ex
+        %pre= ex
