@@ -7,4 +7,4 @@
     = submit_tag
   .text-after
     -# TODO Maybe dangerous??
-    .well= eval(@text).ai(html: true) if @text.present?
+    = eval(@text).ai(html: true) if @text.present?
