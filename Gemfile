@@ -7,6 +7,7 @@ gem 'rails', '4.0.1'
 group :production, :staging do
   gem 'rails_12factor'
   gem 'pg'
+  gem "non-stupid-digest-assets"
 end
 
 group :development, :test do
