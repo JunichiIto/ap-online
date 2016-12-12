@@ -19,6 +19,7 @@ end
 group :development do
   gem 'heroku_san'
   gem 'heroku'
+  gem 'puma'
 end
 
 gem 'thin'
